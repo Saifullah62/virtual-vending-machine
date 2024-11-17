@@ -92,3 +92,5 @@ jQuery(document).ready(function($) {
         alert('You have bought a Sharepack! Proceed to checkout.');
     });
 });
+
+require_once plugin_dir_path(__FILE__) . 'includes/vvm-functions.php';
