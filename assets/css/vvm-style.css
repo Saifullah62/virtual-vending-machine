@@ -1,0 +1,17 @@
+#vvm-buy-button {
+    background-color: #0073aa; /* WordPress blue */
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#vvm-buy-button:hover {
+    background-color: #005177; /* Darker shade for hover */
+}
