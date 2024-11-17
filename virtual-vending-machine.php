@@ -99,3 +99,10 @@ function vvm_enqueue_scripts() {
     wp_enqueue_script('vvm-script', plugin_dir_url(__FILE__) . 'assets/js/vvm-script.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'vvm_enqueue_scripts');
+// Shortcode to display vending machine template
+function vvm_display_vending_machine() {
+    ob_start();
+    include plugin_dir_path(__FILE__) . 'templates/vvm-vending-machine-template.php';
+    return ob_get_clean();
+}
+add_shortcode('vvm_vending_machine', 'vvm_display_vending_machine');
