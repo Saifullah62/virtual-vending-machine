@@ -26,3 +26,29 @@ function vvm_deactivate() {
     // Deactivation code here, such as cleaning temporary data.
 }
 register_deactivation_hook(__FILE__, 'vvm_deactivate');
+add_action('woocommerce_thankyou', 'vvm_assign_random_share_tier', 10, 1);
+
+function vvm_assign_random_share_tier($order_id) {
+    if (!$order_id) {
+        return;
+    }
+
+    // Get order details
+    $order = wc_get_order($order_id);
+
+    // Randomize the share tier (Common, Rare, etc.)
+    $rand = rand(1, 100);
+    $share_tier = '';
+    if ($rand <= 60) {
+        $share_tier = 'Common';
+    } elseif ($rand <= 90) {
+        $share_tier = 'Rare';
+    } elseif ($rand <= 99) {
+        $share_tier = 'Ultra-Rare';
+    } else {
+        $share_tier = 'Grail';
+    }
+
+    // For now, simply add a note to the order with the assigned tier
+    $order->add_order_note('Share Tier Assigned: ' . $share_tier);
+}
