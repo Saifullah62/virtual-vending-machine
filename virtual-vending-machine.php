@@ -76,3 +76,19 @@ function vvm_my_vault_content() {
     }
 }
 
+add_shortcode('vvm_button', 'vvm_vending_machine_button');
+function vvm_vending_machine_button() {
+    return '<button id="vvm-buy-button">Buy a Sharepack!</button>';
+}
+
+function vvm_enqueue_scripts() {
+    wp_enqueue_script('vvm-script', plugins_url('/js/vvm-script.js', __FILE__), array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'vvm_enqueue_scripts');
+
+// In the /js directory, create vvm-script.js:
+jQuery(document).ready(function($) {
+    $('#vvm-buy-button').click(function() {
+        alert('You have bought a Sharepack! Proceed to checkout.');
+    });
+});
