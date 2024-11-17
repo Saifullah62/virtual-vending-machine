@@ -94,3 +94,8 @@ jQuery(document).ready(function($) {
 });
 
 require_once plugin_dir_path(__FILE__) . 'includes/vvm-functions.php';
+// Enqueue frontend scripts
+function vvm_enqueue_scripts() {
+    wp_enqueue_script('vvm-script', plugin_dir_url(__FILE__) . 'assets/js/vvm-script.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'vvm_enqueue_scripts');
