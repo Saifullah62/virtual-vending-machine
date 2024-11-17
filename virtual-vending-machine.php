@@ -52,3 +52,27 @@ function vvm_assign_random_share_tier($order_id) {
     // For now, simply add a note to the order with the assigned tier
     $order->add_order_note('Share Tier Assigned: ' . $share_tier);
 }
+
+add_filter('woocommerce_account_menu_items', 'vvm_add_my_vault_link', 40);
+function vvm_add_my_vault_link($menu_links) {
+    $menu_links['my-vault'] = 'My Vault';
+    return $menu_links;
+}
+
+add_action('woocommerce_account_my-vault_endpoint', 'vvm_my_vault_content');
+function vvm_my_vault_content() {
+    echo '<h3>My Vault</h3>';
+    echo '<p>Here you can view the Sharepacks you own.</p>';
+    // For simplicity, fetch orders and display assigned shares
+    $user_id = get_current_user_id();
+    $orders = wc_get_orders(array(
+        'customer_id' => $user_id,
+        'limit' => -1,
+    ));
+    foreach ($orders as $order) {
+        echo '<p>Order #'. $order->get_id() .': ';
+        echo $order->get_meta('_share_tier') ?: 'No shares assigned yet.';
+        echo '</p>';
+    }
+}
+
