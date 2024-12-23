@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Digital-7';
+  src: url('https://cdn.jsdelivr.net/npm/digital-7-font@1.0.1/Digital-7.ttf') format('truetype');
+}
+
+@layer base {
+  :root {
+    --color-primary: #df4630;
+    --color-secondary: #0047ab;
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite;
+}
+
+.glass-card {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+}
+
+.digital-display {
+  font-family: 'Digital-7', monospace;
+  text-shadow: 0 0 10px rgba(223, 70, 48, 0.5);
+  letter-spacing: 0.1em;
+  font-size: 1.25em;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .vending-machine {
+    @apply w-[50px] mx-auto;
+    transform: scale(0.9);
+  }
+
+  .digital-display {
+    font-size: 1.1em;
+  }
+
+  .glass-card {
+    @apply p-4;
+  }
+
+  .machine-content {
+    @apply p-2;
+  }
+
+  .machine-display {
+    @apply h-[250px];
+  }
+}
+
+/* Enhanced Animations */
+@keyframes armMove {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+.arm-animation {
+  animation: armMove 2s ease-in-out;
+}
+
+@keyframes cardSpin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.card-spin {
+  animation: cardSpin 3s linear infinite;
+}
+
+/* Lighting Effects */
+.machine-lighting {
+  @apply absolute inset-0 pointer-events-none;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+
+.machine-glow {
+  @apply absolute inset-0;
+  box-shadow: inset 0 0 50px rgba(223, 70, 48, 0.2);
+}
